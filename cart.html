@@ -108,13 +108,14 @@
       <!-- 监听器 -->
       课程总数：{{totalCount}}
     </p>
+    <p>course: {{course}}</p>
   </div>
 
   <script src="vue.js"></script>
   <script src="./plugins/heading.js"></script>
   <script>
     // 模拟用户角色
-    const role = 'user'
+    const role = 'admin'
 
     // 总线
     Vue.prototype.$bus = new Vue();
@@ -171,17 +172,17 @@
 
     // 课程新增组件
     Vue.component('course-add', {
-      props: ['val'],
+      props: ['value'],
       model: {
-        value: 'val',
+        value: 'value',
         event: 'change'
       },
       template: `
         <div>
           <!-- 用户输入 -->
           <p>
-            <input type="text" :value="val" 
-              @change="onChange"
+            <input type="text" :value="value"
+              @input="onChange"
               v-on:keydown.enter="addCourse"
               ref="inp" v-focus>
             <button @click="addCourse">新增</button>
